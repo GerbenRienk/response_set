@@ -1,4 +1,4 @@
-/* this select unique response_sets per item
+/* this statement selects unique response_sets per item
  * which can then be used to count the occurrences and then select those that need looking into 
  */
 with candidate_items as 
@@ -8,7 +8,7 @@ with candidate_items as
 		item_form_metadata ifm 
 		left join response_set rs on ifm.response_set_id=rs.response_set_id
 		left join crf_version cv on ifm.crf_version_id=cv.crf_version_id
-		-- only look at radio's, select, and multi's
+		-- only look at radio's, select, and multi's:
 		where rs.response_type_id in (3, 5, 6, 7)
 		order by ifm.item_id )
 	-- count the number of response-groups per item
